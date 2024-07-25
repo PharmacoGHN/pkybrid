@@ -4,3 +4,4 @@
 ^\.lintr$
 ^LICENSE\.md$
 ^\.github$
+^codecov\.yml$
