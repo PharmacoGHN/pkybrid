@@ -4,8 +4,17 @@
 \alias{get_observation_time}
 \title{get_observation_time}
 \usage{
-get_observation_time()
+get_observation_time(date = NULL, time, merged = FALSE, unit_scale = "hours")
+}
+\arguments{
+\item{date}{is the date of observation}
+
+\item{time}{is the time of observation}
+
+\item{merged}{False by default. If set to true only time need to be given as a POSIXct}
+
+\item{unit_scale}{scale used to calculate the time difference. Hours is the default}
 }
 \description{
-calculate the relative observation time
+calculate the relative observation time from the first administration
 }
