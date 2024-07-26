@@ -44,9 +44,43 @@ test_that("Covariates test", {
   expect_equal(result, expected)
 })
 
-skip()
-test_that("Empty input test", {
-  result <- pk_data_translate(time = numeric(0), amt = numeric(0), dv = numeric(0), mdv = numeric(0))
-  expected <- data.frame(ID = integer(0), time = numeric(0), evid = integer(0), cmt = integer(0), amt = numeric(0), rate = numeric(0), DV = numeric(0), mdv = numeric(0))
+
+test_that("get_observation_time works correctly with date and time", {
+  date <- c("2021-01-01", "2021-01-01", "2021-01-02")
+  time <- c("12:00:00", "14:00:00", "12:00:00")
+  expected <- c(0, 2, 24)  # 2 hours and 22 hours
+  result <- get_observation_time(date, time)
   expect_equal(result, expected)
+})
+
+test_that("get_observation_time works correctly with POSIXct time and merged = TRUE", {
+  datetime <- as.POSIXct(c("2021-01-01 12:00:00", "2021-01-01 14:00:00", "2021-01-02 12:00:00"))
+  expected <- c(0, 2, 24)
+  result <- get_observation_time(time = datetime, merged = TRUE)
+  expect_equal(result, expected)
+})
+
+test_that("get_observation_time works correctly with different unit_scale", {
+  date <- c("2021-01-01", "2021-01-01", "2021-01-02")
+  time <- c("12:00:00", "14:00:00", "12:00:00")
+  expected <- c(0, 120, 1440)  # 2*60 minutes and 22*60 minutes
+  result <- get_observation_time(date, time, unit_scale = "mins")
+  expect_equal(result, expected)
+})
+
+test_that("get_observation_time throws error for invalid unit_scale", {
+  date <- c("2021-01-01", "2021-01-01", "2021-01-02")
+  time <- c("12:00:00", "14:00:00", "12:00:00")
+  expect_error(get_observation_time(date, time, unit_scale = "years"), "Invalid unit_scale")
+})
+
+test_that("get_observation_time throws error for mismatched date and time lengths", {
+  date <- c("2021-01-01")
+  time <- c("12:00:00", "14:00:00", "12:00:00")
+  expect_error(get_observation_time(date, time), "date and time are not the same length")
+})
+
+test_that("get_observation_time throws error for invalid POSIXct input with merged = TRUE", {
+  time <- c("2021-01-01 12:00:00")
+  expect_error(get_observation_time(time = time, merged = TRUE), "must be a POSIXct object")
 })
