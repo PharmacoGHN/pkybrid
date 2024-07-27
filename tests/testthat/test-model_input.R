@@ -54,6 +54,6 @@ test_that("get_model_type works as expected", {
   expect_equal(get_model_type("scim_2cp", "micro"), "scim_2cp_ka_ke.V.k12.k21")
 
   # Test invalid model type and constant combinations
-  expect_error(get_model_type("oral_3cp", "macro"), "Non existing model. Please see ?pkybrid::default_model for more information", fixed = TRUE)
+  expect_error(get_model_type("oral_3cp", "macro"), "Non existing model. Please see ?pkybrid::get_model_type for more information", fixed = TRUE)
   expect_error(get_model_type("iv_2cp", "macro", tlag = TRUE), "Can't have a Tlag with an iv model")
 })

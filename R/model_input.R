@@ -61,7 +61,7 @@ get_model_type <- function(type, constant, tlag = FALSE) {
   )
 
   if (is.na(parameters)) {
-    stop("Non existing model. Please see ?pkybrid::default_model for more information")
+    stop("Non existing model. Please see ?pkybrid::get_model_type for more information")
   }
 
   model_name <- paste0(type, absorption_model, "_", parameters)

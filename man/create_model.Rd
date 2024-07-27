@@ -8,7 +8,7 @@ create_model(
   type,
   constant = c("micro", "macro"),
   cov = NULL,
-  engine = "nonmem"
+  engine = "parametric"
 )
 }
 \arguments{
