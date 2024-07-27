@@ -12,6 +12,7 @@ Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Imports: 
     dplyr,
+    mrgsolve,
     rlang
 Suggests: 
     testthat (>= 3.0.0)
