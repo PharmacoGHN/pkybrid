@@ -37,7 +37,7 @@ call_model <- function(model_name, engine = "parametric") {
   }
 
   engine <- call_engine(engine)
-  model <- paste0(engine$model_path, strsplit(model_name, split =".")[[1]][1])
+  model <- paste0(engine$model_path, strsplit(model_name, split = ".")[[1]][1]) # in case of parametric model, they are all stored in .cpp file
 
   pkmod <- mrgsolve::mcode(model)
 
