@@ -13,7 +13,8 @@
 #' @param cov list of covariate and their values
 #' @param route correspond to the route of administration, is set to PO by default
 #'
-#'@export
+#' @author Romain Garreau
+#' @export
 
 
 pk_data_translate <- function(id = NULL, time, evid = NA, cmt = 1, amt, rate = NULL, dv, mdv, cov = NULL, route = "PO") {
